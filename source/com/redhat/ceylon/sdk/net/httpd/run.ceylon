@@ -1,28 +1,28 @@
-import java.lang { Integer }
+//import java.lang { Integer }
 import java.io { File }
-import java.net { InetSocketAddress }
-import org.xnio { 
-	Xnio { xnioInstance = instance }, 
-	XnioWorker, 
-	OptionMap { omBuilder = builder }, 
-	Options { 
-		workerWriteThreads = \iWORKER_WRITE_THREADS, 
-		workerReadThreads = \iWORKER_READ_THREADS, 
-		connectionLowWatter = \iCONNECTION_LOW_WATER, 
-		connectionHighWatter = \iCONNECTION_HIGH_WATER,
-		workerTaskCoreThreads = \iWORKER_TASK_CORE_THREADS,
-		workerTaskMaxThreads = \iWORKER_TASK_MAX_THREADS,
-		tcpNoDelay = \iTCP_NODELAY
-	}, 
-	ByteBufferSlicePool, 
-	BufferAllocator {directByteBufferAllocator  = \iDIRECT_BYTE_BUFFER_ALLOCATOR}, 
-	ChannelListener
-}
-import org.xnio.channels { AcceptingChannel, ConnectedStreamChannel, ConnectedChannel }
-import org.xnio.ceylonadapter {XnioWorkerHelper {createStreamServer}}
+//import java.net { InetSocketAddress }
+//import org.xnio { 
+//	Xnio { xnioInstance = instance }, 
+//	XnioWorker, 
+//	OptionMap { omBuilder = builder }, 
+//	Options { 
+//		workerWriteThreads = \iWORKER_WRITE_THREADS, 
+//		workerReadThreads = \iWORKER_READ_THREADS, 
+//		connectionLowWatter = \iCONNECTION_LOW_WATER, 
+//		connectionHighWatter = \iCONNECTION_HIGH_WATER,
+//		workerTaskCoreThreads = \iWORKER_TASK_CORE_THREADS,
+//		workerTaskMaxThreads = \iWORKER_TASK_MAX_THREADS,
+//		tcpNoDelay = \iTCP_NODELAY
+//	}, 
+//	ByteBufferSlicePool, 
+//	BufferAllocator {directByteBufferAllocator  = \iDIRECT_BYTE_BUFFER_ALLOCATOR}, 
+//	ChannelListener
+//}
+//import org.xnio.channels { AcceptingChannel, ConnectedStreamChannel, ConnectedChannel }
+//import org.xnio.ceylonadapter {XnioWorkerHelper {createStreamServer}}
 import io.undertow.server { HttpOpenListener, HttpTransferEncodingHandler, HttpHandler }
-import io.undertow.server.handlers { CanonicalPathHandler }
-import io.undertow.server.handlers.error { SimpleErrorPageHandler }
+//import io.undertow.server.handlers { CanonicalPathHandler }
+//import io.undertow.server.handlers.error { SimpleErrorPageHandler }
 import io.undertow.server.handlers.file { FileHandler }
 
 doc "Run the module `com.redhat.ceylon.sdk.net.httpd`."
@@ -51,11 +51,13 @@ void run() {
 //	XnioWorker worker = xnioInstance.createWorker(optionMap);
 //	HttpOpenListener openListener = HttpOpenListener(ByteBufferSlicePool(directByteBufferAllocator, 8192, 8192 * 8192));
 	HttpHandler fileHandler = FileHandler(File(path));
-
 	
-	//HttpTransferEncodingHandler(CanonicalPathHandler(SimpleErrorPageHandler(fileHandler)));
+	//HttpHandler rootHandler = HttpTransferEncodingHandler(CanonicalPathHandler(SimpleErrorPageHandler(fileHandler)));
+	//HttpHandler errPageHandler = SimpleErrorPageHandler(fileHandler);
+	//HttpHandler cannonicalPaHttpHandler = CanonicalPathHandler(errPageHandler);
+	//HttpHandler httpTransferEncoding = HttpTransferEncodingHandler(cannonicalPaHttpHandler);
+	//
 	
-	HttpHandler rootHandler = HttpTransferEncodingHandler(CanonicalPathHandler(SimpleErrorPageHandler(fileHandler)));
 //	openListener.rootHandler := rootHandler;
 //	
 //	object channelListener satisfies ChannelListener<AcceptingChannel<ConnectedStreamChannel>> {
